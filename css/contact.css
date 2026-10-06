@@ -1,0 +1,291 @@
+/* ==========================================================================
+   CONTACT PAGE
+   ========================================================================== */
+
+.contact-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(60px, 10vh, 120px);
+}
+
+.contact-grid {
+    --contact-pad-y: clamp(48px, 8vh, 96px);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--contact-pad-y);
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-top: var(--contact-pad-y);
+}
+
+/* === COLONNE GAUCHE : INFOS === */
+.contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.contact-block {
+    padding: 28px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: rgba(252, 244, 199, 0.52);
+    font-weight: 400;
+    margin-bottom: 14px;
+}
+
+.contact-link {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    color: var(--text-color);
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    display: block;
+    line-height: 1.2;
+}
+
+/* .contact-link:hover géré dans media query */
+
+
+.contact-text {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.8rem);
+    font-style: italic;
+    color: var(--text-color);
+    line-height: 1.4;
+}
+
+.contact-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.contact-social-link {
+    font-size: 0.75rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 300;
+    transition: color 0.2s, transform 0.2s;
+    display: inline-block;
+}
+
+/* .contact-social-link:hover géré dans media query */
+
+
+/* === COLONNE DROITE : FORMULAIRE === */
+.contact-form-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.contact-form-title {
+    font-family: var(--font-sans);
+    font-size: clamp(1.4rem, 3vw, 2.2rem);
+    font-weight: 600;
+    text-transform: uppercase;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    color: var(--text-color);
+}
+
+.contact-form-title span {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    font-size: clamp(1.2rem, 2.5vw, 2rem);
+    color: rgba(252, 244, 199, 0.7);
+    letter-spacing: 0;
+}
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 28px;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.form-field label {
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.6);
+    font-weight: 400;
+}
+
+.form-field input,
+.form-field select,
+.form-field textarea {
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    font-weight: 300;
+    padding: 12px 0;
+    outline: none;
+    transition: border-color 0.3s ease;
+    width: 100%;
+    -webkit-appearance: none;
+    appearance: none;
+    border-radius: 0;
+}
+
+.form-field select {
+    cursor: pointer;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='white' stroke-width='1' fill='none' stroke-opacity='0.5'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 4px center;
+    padding-right: 24px;
+}
+
+.form-field select option {
+    background: #0a0a0a;
+    color: var(--white);
+}
+
+.form-field input::placeholder,
+.form-field textarea::placeholder {
+    color: rgba(255, 255, 255, 0.4);
+    font-weight: 300;
+}
+
+.form-field input:focus,
+.form-field select:focus,
+.form-field textarea:focus {
+    border-bottom-color: var(--text-color);
+}
+
+.form-field textarea {
+    resize: none;
+    line-height: 1.7;
+}
+
+/* === BOUTON D'ENVOI === */
+.form-submit {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    margin-top: 8px;
+    width: fit-content;
+    font-family: var(--font-sans);
+    font-size: clamp(0.72rem, 1.3vw, 0.8rem);
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--white);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.5);
+    padding-bottom: 4px;
+    transition: color 0.2s, border-color 0.2s;
+}
+
+/* .form-submit:hover géré dans media query */
+
+
+.submit-arrow {
+    transition: transform 0.3s ease;
+}
+
+/* .form-submit:hover .submit-arrow géré dans media query */
+
+
+/* === RESPONSIVE TABLETTE & DESKTOP === */
+@media (min-width: 768px) {
+    .contact-section {
+        padding: 0 var(--pad-md);
+    }
+
+    .contact-grid {
+        grid-template-columns: 38% 62%;
+        gap: 0;
+        padding-top: 0;
+        border-top: none;
+    }
+
+    .contact-info {
+        padding: var(--contact-pad-y) var(--pad-md) var(--contact-pad-y) 0;
+        border-top: 1px solid rgba(255, 255, 255, 0.13);
+        border-right: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .contact-form-wrap {
+        padding: var(--contact-pad-y) 0 var(--contact-pad-y) var(--pad-md);
+        border-top: 1px solid rgba(255, 255, 255, 0.13);
+    }
+
+    .form-row {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media (min-width: 1024px) {
+    .contact-section {
+        padding: 0 var(--pad-lg);
+    }
+}
+
+@media (min-width: 1280px) {
+    .contact-info {
+        padding-right: var(--pad-lg);
+    }
+
+    .contact-form-wrap {
+        padding-left: var(--pad-lg);
+    }
+}
+
+
+/* --- RETOUR TACTILE (:active) POUR MOBILE & TABLETTE --- */
+a:active,
+button:active,
+.contact-link:active,
+.contact-social-link:active,
+.form-submit:active {
+    opacity: 0.72;
+    transform: scale(0.97);
+    transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+/* --- EFFETS DE SURVOL (SOURIS / POINTEUR PRÉCIS UNIQUEMENT) --- */
+@media (hover: hover) and (pointer: fine) {
+    .contact-link:hover {
+        color: var(--white);
+        border-color: var(--white);
+    }
+
+    .contact-social-link:hover {
+        color: var(--white);
+    }
+
+    .form-submit:hover {
+        border-bottom-color: var(--white);
+    }
+
+    .form-submit:hover .submit-arrow {
+        transform: translate(2px, -2px);
+    }
+}

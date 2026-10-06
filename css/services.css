@@ -1,0 +1,266 @@
+/*=========================
+SERVICES
+=========================*/
+
+.services-section {
+    padding: 0;
+    /* = .project-gallery (page projet) */
+margin-bottom: 160px;
+}
+
+.service-block {
+    /* Rythme vertical de .project-info (page projet) */
+    --service-pad-y: clamp(48px, 8vh, 96px);
+    border-top: 1px solid rgba(255,255,255,.13);
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 5vw, 80px);
+ padding: 56px var(--pad-sm) 72px;
+}
+
+/* === COLONNE GAUCHE === */
+.service-left {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.service-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+      color: #fcf4c786;
+    font-weight: 400;
+    margin-bottom: 0;
+}
+
+.service-spacer {
+    flex: 1;
+    min-height: 60px;
+}
+
+.service-body {
+    display: flex;
+    flex-direction: column;
+    gap: 36px;
+}
+
+/* = .project-desc (page projet) */
+.service-desc {
+    font-family: var(--font-sans);
+    font-size: var(--fs-h2);
+    color: rgba(255,255,255,.85);
+    line-height: 1.75;
+    max-width: 480px;
+    font-weight: 300;
+}
+
+.service-tags {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    border-top: 1px solid rgba(255,255,255,.1);
+}
+
+/* = .meta-label / .meta-services (page projet) */
+.service-tags li {
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    letter-spacing: .12em;
+    text-transform: uppercase;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255,255,255,.1);
+    color: rgba(255,255,255,.8);
+    font-weight: 300;
+}
+
+.service-tags li strong {
+    color: var(--white);
+    font-weight: 500;
+}
+
+.service-ctas {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 16px 32px;
+}
+
+/* Taille = .txt-label (accueil) : plus de texte sous 11px */
+.cta-primary {
+    font-size: clamp(0.72rem, 1.3vw, 0.8rem);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255,255,255,.6);
+    padding-bottom: 3px;
+    font-weight: 700;
+    transition: border-color .2s;
+}
+
+/* .cta-primary:hover géré dans @media (hover: hover) and (pointer: fine) */
+
+.cta-secondary {
+    font-size: clamp(0.72rem, 1.3vw, 0.8rem);
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    /* = .filter-btn (accueil) : opacité relevée pour rester lisible */
+    color: rgba(255,255,255,.75);
+    text-decoration: none;
+    transition: color .2s;
+}
+
+/* .cta-secondary:hover géré dans @media (hover: hover) and (pointer: fine) */
+
+/* === COLONNE DROITE === */
+.service-right {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.service-title {
+    font-size: clamp(1.8rem, 4vw, 3.2rem);
+    font-family: var(--font-serif);
+    font-style: italic;
+    line-height: .95;
+    text-transform: uppercase;
+    font-weight: 500;
+    letter-spacing: .01em;
+    text-align: right;
+    color: #fff;
+    padding-bottom: 20px;
+}
+
+.service-title em {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 500;
+}
+/* Les titres d'arrivée restent visibles sous l'en-tête fixe de 70 px. */
+.service-title[id] {
+    scroll-margin-top: 94px; /* 70 px d'en-tête + 24 px de respiration */
+}
+
+.service-title[id]:focus-visible {
+  
+    outline-offset: 6px;
+}
+.service-eyebrow[id]:focus,
+.service-eyebrow[id]:focus-visible {
+    outline: none;
+}
+
+.service-image {
+    height:80vh;
+   max-height: 68vh;
+   width:100%;
+   margin-top: 30px;
+    overflow: hidden;
+    background: rgba(255,255,255,.04);
+}
+
+.service-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    filter: brightness(.85);
+    transition: transform .8s ease, filter .5s ease;
+}
+
+/* === DESKTOP === */
+@media (min-width: 768px) {
+    .service-block {
+        grid-template-columns: 45% 55%;
+        grid-template-rows: 640px;
+        gap: 0;
+        padding: 0;
+        align-items: stretch;
+        margin-bottom: 24px;
+    }
+
+    .service-left {
+        padding: var(--service-pad-y) 48px var(--service-pad-y) var(--pad-md);
+    }
+
+    /* padding sur tous les côtés = espace autour de l'image */
+    .service-right {
+        display: grid;
+        grid-template-rows: auto 1fr;
+        padding: var(--service-pad-y) var(--pad-md) var(--service-pad-y) 80px;
+    }
+
+    .service-title {
+        font-size: clamp(1.6rem, 3vw, 3rem);
+        padding-bottom: 20px;
+        text-align: right;
+    }
+
+    .service-image {
+        aspect-ratio: unset;
+        width: 100%;
+        height: 100%;
+        min-height: 0;
+    }
+}
+
+/* Marges extérieures = celles du hero (88px dès 1024px) */
+@media (min-width: 1024px) {
+    .service-left {
+        padding-left: var(--pad-lg);
+    }
+
+    .service-right {
+        padding-right: var(--pad-lg);
+    }
+}
+
+@media (min-width: 1280px) {
+    .service-block {
+        grid-template-rows: 720px;
+        margin-bottom: 32px;
+    }
+
+    .service-left {
+        padding-right: 64px;
+    }
+
+    .service-right {
+        padding-left: 100px;
+    }
+
+    .service-title {
+    font-size: clamp(2rem, 4vw, 3rem);    }
+}
+
+
+
+
+/* --- RETOUR TACTILE (:active) POUR MOBILE & TABLETTE --- */
+a:active,
+button:active,
+.cta-primary:active,
+.cta-secondary:active,
+.service-link:active {
+    opacity: 0.75;
+    transform: scale(0.98);
+    transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+/* --- EFFETS DE SURVOL (SOURIS / POINTEUR PRÉCIS UNIQUEMENT) --- */
+@media (hover: hover) and (pointer: fine) {
+    .cta-primary:hover {
+        border-color: #fff;
+    }
+
+    .cta-secondary:hover {
+        color: var(--white);
+    }
+
+    .service-block:hover .service-image img {
+        filter: grayscale(0%);
+        transform: scale(1.02);
+    }
+}

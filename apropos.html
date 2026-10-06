@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À propos | Alice Auger — Animations d'art & Personnalisation de prestige</title>
+    <meta name="description" content="Artiste graveuse et designer, Alice Auger sublime les objets des plus belles maisons lors d'animations en boutique, lancements exclusifs et commandes sur mesure.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="image/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="image/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+    <!-- Aperçu au partage (Open Graph) -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Alice Auger">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="À propos | Alice Auger — Animations d'art & Personnalisation de prestige">
+    <meta property="og:description" content="Artiste graveuse et designer, Alice Auger sublime les objets des plus belles maisons lors d'animations en boutique, lancements exclusifs et commandes sur mesure.">
+    <meta property="og:image" content="https://augeralice.github.io/image/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alice Auger — Gravure sur mesure et animations événementielles">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Mouvement : état posé avant le premier rendu (aucun flash).
+         - intro-seen : on arrive depuis une autre page du site (et pas via un rechargement) :
+           le header reste en place, il ne rejoue pas son wipe. À l'arrivée sur le site
+           (lien externe, URL tapée, favori, rechargement), il joue son entrée complète.
+         - is-transitioning : le navigateur joue une vraie transition entre pages, donc pas de calque noir. -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            try {
+                var nav = performance.getEntriesByType('navigation')[0];
+                var reloaded = nav && nav.type === 'reload';
+                var fromSite = document.referrer.indexOf(location.origin + '/') === 0;
+                if (fromSite && !reloaded) d.classList.add('intro-seen');
+            } catch (e) { }
+            addEventListener('pagereveal', function (e) {
+                if (e.viewTransition) d.classList.add('is-transitioning');
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/apropos.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+    <div class="progress-bar"></div>
+
+    <header>
+        <div class="logo">
+            <div class="reveal-mask">
+                <a href="index.html" class="reveal-logo">
+                    <span class="logo-name">ALICE AUGER</span>
+                </a>
+            </div>
+        </div>
+
+        <input type="checkbox" id="burger-check">
+        <label for="burger-check" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+
+        <nav aria-label="Navigation principale">
+            <a href="apropos.html">À PROPOS</a>
+            <a href="services.html">SERVICES</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- ==================== HERO ==================== -->
+        <section class="hero about-hero page-pad">
+            <div class="about-title-area">
+                <div class="about-title">
+                    <div class="reveal-mask">
+                        <div class="category about-category">
+                            ANIMATION & ÉVÉNEMENTIEL <div class="divider-line3"></div>
+                        </div>
+                    </div>
+                    <div class="reveal-mask">
+                        <h1 class="about-name name-project reveal-text">
+                            L'art du sur-mesure<br>
+                            <span>sous les yeux du client</span>
+                        </h1>
+                    </div>
+                </div>
+
+                <div class="hero-details">
+                    <div></div>
+                    <div class="hero-col-right">
+                        <div class="divider-line2"></div>
+                        <div class="reveal-mask">
+                            <p class="reveal-text">
+                                Transformer l'acte d'achat en un instant de création mémorable, entre élégance, dextérité manuelle et personnalisation instantanée.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="next-label">
+                <span class="txt-label">À PROPOS</span>
+                <div class="divider-line"></div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 01 : RENCONTRE & DÉMARCHE ==================== -->
+        <section class="about-content-section">
+            <div class="about-grid">
+                <div class="about-text-block reveal-up">
+                    <h2 class="details-title">01 / LA DÉMARCHE</h2>
+                    <div class="inner-text-content">
+                        <p class="manifesto-lead">
+                            « Quand la matière s'anime en direct, l'objet devient un souvenir précieux et unique. »
+                        </p>
+                        <p>
+                            Diplômée d'un master en design graphique et numérique en 2019, j'ai rapidement orienté ma pratique vers le travail de la matière. La rigueur du dessin, le sens de l'équilibre typographique et l'attention aux proportions trouvent dans l'artisanat du geste un terrain d'expression vivant.
+                        </p>
+                        <p>
+                            Intervenant régulièrement pour des maisons de prestige — notamment dans la haute parfumerie et l'univers des vins et spiritueux —, j'allie une maîtrise technique irréprochable à une réelle aisance relationnelle auprès d'une clientèle internationale et exigeante.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="about-image-block reveal-up">
+                    <img src="image/nav/glh-1.webp" alt="Alice Auger lors d'une animation flacon Guerlain">
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 02 : DEUX TEMPS DE CRÉATION ==================== -->
+        <section class="about-formats-section reveal-up">
+            <div class="formats-header">
+                <span class="details-title">02 / MODES D'INTERVENTION</span>
+                <h2 class="formats-title">Deux scènes, une même exigence</h2>
+            </div>
+
+            <div class="formats-grid">
+                <!-- Format A : En boutique -->
+                <div class="format-card">
+                    <p class="format-tag">PERFORMANCE EN DIRECT</p>
+                    <h3 class="format-name">En boutique & salons privés</h3>
+                    <p class="format-text">
+                        Gravure minute de flacons, verres, carafes ou accessoires devant les invités. Un geste silencieux, précis et fascinant qui crée l'événement, valorise la marque et prolonge l'expérience client.
+                    </p>
+                    <ul class="format-features">
+                        <li>→ Pop-up stores & lancements presse</li>
+                        <li>→ Fêtes de fin d'année & fête des mères</li>
+                        <li>→ Soirées VIP & hospitalités de marque</li>
+                    </ul>
+                </div>
+
+                <!-- Format B : En atelier -->
+                <div class="format-card">
+                    <p class="format-tag">CRÉATION SUR MESURE</p>
+                    <h3 class="format-name">Commandes d'atelier & séries</h3>
+                    <p class="format-text">
+                        Réalisation de pièces protocolaires, cadeaux d’affaires d’exception, coffrets numérotés et créations graphiques préparatoires avec rehauts de dorure et finitions soignées.
+                    </p>
+                    <ul class="format-features">
+                        <li>→ Écrins & flacons millésimés</li>
+                        <li>→ Cadeaux institutionnels & ambassadeurs</li>
+                        <li>→ Direction artistique de lettrages</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 03 : STANDARDS DU LUXE ==================== -->
+        <section class="about-pillars-section reveal-up">
+            <div class="pillars-header">
+                <span class="details-title">03 / STANDARDS DE SERVICE</span>
+                <h2 class="pillars-title">Une intégration fluide à vos espaces</h2>
+            </div>
+
+            <div class="pillars-grid">
+                <div class="pillar-card">
+                    <p class="pillar-number">01</p>
+                    <h3 class="pillar-name">Posture & Discrétion</h3>
+                    <p class="pillar-desc">
+                        Code vestimentaire soigné, discrétion absolue et accueil courtois en harmonie avec les codes d'excellence des maisons de luxe.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <p class="pillar-number">02</p>
+                    <h3 class="pillar-name">Dextérité & Rythme</h3>
+                    <p class="pillar-desc">
+                        Gravure fluide sans interruption du parcours client, capable de répondre aux pics d'affluence des temps forts commerciaux.
+                    </p>
+                </div>
+
+                <div class="pillar-card">
+                    <p class="pillar-number">03</p>
+                    <h3 class="pillar-name">Matériel autonome</h3>
+                    <p class="pillar-desc">
+                        Poste de travail compact, insonorisé et propre, conçu pour s'intégrer instantanément sur un meuble ou un comptoir de vente.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 04 : UNIVERS D'INTERVENTION ==================== -->
+        <section class="about-realms-section reveal-up">
+            <div class="realms-grid">
+                <div class="realms-label">
+                    <span class="details-title">04 / SECTEURS & MATIÈRES</span>
+                </div>
+                <div class="realms-list">
+                    <div class="realm-item">
+                        <span class="realm-role">Haute Parfumerie & Cosmétique</span>
+                        <span class="realm-desc">Flacons en verre et cristal, capots métalliques, compacts et miroirs.</span>
+                    </div>
+                    <div class="realm-item">
+                        <span class="realm-role">Vins, Champagnes & Spiritueux</span>
+                        <span class="realm-desc">Carafes gravées, bouteilles de prestige, verrerie dégustation et seaux à champagne.</span>
+                    </div>
+                    <div class="realm-item">
+                        <span class="realm-role">Événements d'Exception & Galas</span>
+                        <span class="realm-desc">Marque-places personnalisés sur verre ou agate, cadeaux d'invités sur mesure.</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ==================== SECTION 05 : CTA ÉVÉNEMENTIEL ==================== -->
+        <section class="about-cta-section reveal-up">
+            <div class="cta-inner">
+                <p class="cta-eyebrow">CALENDRIER & ÉVÉNEMENTS</p>
+                <h2 class="cta-title">Préparons votre prochaine animation.</h2>
+                <p class="cta-subtitle">
+                    Disponible à Paris, en France et à l'international pour des animations ponctuelles ou des temps forts saisonniers.
+                </p>
+                <a href="contact.html" class="cta-link">
+                    <span>Réserver une date d'animation</span>
+                    <span class="cta-arrow">→</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="f-col">
+                <div class="f-logo">ALICE AUGER</div>
+                <p class="f-sub">Paris, France<br>Design & Artisanat</p>
+            </div>
+            <div class="f-col">
+                <h2 class="f-title">CONTACT</h2>
+                <a href="#">→ Instagram</a>
+                <a href="#">→ LinkedIn</a>
+                <a href="#">→ Behance</a>
+            </div>
+            <div class="f-col1">
+                <p>mail@hotmail.com</p>
+                <p>+33 6 54 88 25 44</p>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 Alice Auger. Tous droits réservés.</p>
+            <div class="footer-legal-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="confidentialite.html">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/script.js"></script>
+</body>
+
+</html>

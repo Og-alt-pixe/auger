@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | Alice Auger</title>
+    <meta name="description"
+        content="Gravure sur verre sur mesure, animations en direct lors d'événements ou en boutique, création graphique et identité visuelle : les prestations d'Alice Auger.">
+    <meta name="theme-color" content="#0a0a0a">
+    <link rel="icon" href="image/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="image/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+    <!-- Aperçu au partage (Open Graph). ⚠️ og:image doit rester une URL absolue : à mettre à jour si le domaine change. -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Alice Auger">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Services | Alice Auger">
+    <meta property="og:description"
+        content="Gravure sur verre sur mesure, animations en direct lors d'événements ou en boutique, création graphique et identité visuelle : les prestations d'Alice Auger.">
+    <meta property="og:image" content="https://augeralice.github.io/image/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alice Auger — Des objets singuliers façonnés à la main">
+    <meta name="twitter:card" content="summary_large_image">
+    <!-- Mouvement : état posé avant le premier rendu (aucun flash).
+         - intro-seen : on arrive depuis une autre page du site (et pas via un rechargement) :
+           le header reste en place, il ne rejoue pas son wipe. À l'arrivée sur le site
+           (lien externe, URL tapée, favori, rechargement), il joue son entrée complète.
+         - is-transitioning : le navigateur joue une vraie transition entre pages, donc pas de calque noir. -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            try {
+                var nav = performance.getEntriesByType('navigation')[0];
+                var reloaded = nav && nav.type === 'reload';
+                var fromSite = document.referrer.indexOf(location.origin + '/') === 0;
+                if (fromSite && !reloaded) d.classList.add('intro-seen');
+            } catch (e) { }
+            addEventListener('pagereveal', function (e) {
+                if (e.viewTransition) d.classList.add('is-transitioning');
+            });
+        })();
+    </script>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/services.css">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+    <div class="progress-bar"></div>
+    <header>
+        <div class="logo">
+            <div class="reveal-mask">
+                <a href="index.html" class="reveal-logo">
+                    <span class="logo-name">ALICE AUGER</span>
+
+                </a>
+            </div>
+        </div>
+
+        <input type="checkbox" id="burger-check">
+        <label for="burger-check" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+
+        <nav aria-label="Navigation principale">
+            <a href="apropos.html">À PROPOS</a>
+            <a href="services.html">SERVICES</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <section class="hero">
+            <div class="hero-subtitle">
+                <span class="reveal-mask">
+                    <span class="reveal-text">Savoir-faire & Prestations</span>
+                </span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="reveal-mask">
+                    <span class="reveal-text">
+                        Le geste <br>
+                        au service <br>
+                        de vos projets
+                    </span>
+                </span>
+            </h1>
+
+            <div class="hero-details">
+                <div></div>
+                <div class="hero-col-right">
+                    <div class="divider-line2"></div>
+                    <div class="reveal-mask">
+                        <p class="reveal-text">
+                            Gravure sur verre, personnalisation en direct et direction artistique sur mesure pour
+                            valoriser vos événements et vos créations.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="services-section">
+
+            <!-- 01 -->
+            <article class="service-block reveal-up">
+                <div class="service-left">
+                    <p class="service-eyebrow"  id="service-gravure" tabindex="-1">01 / Commande</p>
+                    <div class="service-spacer"></div>
+                    <div class="service-body">
+                        <p class="service-desc">
+                            La gravure sur verre permet de personnaliser une grande diversité de supports.
+                            Chaque réalisation est pensée sur mesure pour rendre chaque pièce unique
+                            et accompagner les moments précieux comme les attentions du quotidien.
+
+
+                        </p>
+                        <ul class="service-tags">
+                            <li><strong>Entreprises :</strong> lancements de produits, soirées RP</li>
+                            <li><strong>Particuliers :</strong> mariages, anniversaires, fêtes privées</li>
+                        </ul>
+                        <div class="service-ctas">
+                            <a href="contact.html" class="cta-primary">Demander un devis →</a>
+                            <a href="index.html?filter=artisanat#portfolio" class="cta-secondary">Voir les
+                                réalisations</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-right">
+                    <h2 class="service-title">
+                        Gravure en atelier
+                    </h2>
+                    <div class="service-image">
+                        <img src="image/nav/carafe-MM.webp" alt="Gravure en atelier">
+                    </div>
+                </div>
+            </article>
+
+            <!-- 02 -->
+            <article class="service-block reveal-up">
+                <div class="service-left">
+                    <p class="service-eyebrow">02 / Animation</p>
+                    <div class="service-spacer"></div>
+                    <div class="service-body">
+                        <p class="service-desc">
+                            Interventions en direct lors d'événements, lancements ou expériences en boutique.
+                            Chaque personnalisation est réalisée sur place afin d'offrir un moment unique et créer un
+                            lien privilégié avec les invités ou les clients.
+                        </p>
+                        <ul class="service-tags">
+                            <li><strong>Format :</strong> journée, demi-journée, soirée</li>
+                            <li><strong>Supports :</strong> verre, métal, cuir, bois</li>
+                        </ul>
+                        <div class="service-ctas">
+                            <a href="contact.html" class="cta-primary">Demander un devis →</a>
+                            <a href="index.html?filter=artisanat#portfolio" class="cta-secondary">Voir les
+                                réalisations</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-right">
+                    <h2 class="service-title">Animation & événement</h2>
+                    <div class="service-image">
+                        <img src="image/nav/noel-5.webp" alt="Animation événementielle">
+                    </div>
+                </div>
+            </article>
+
+            <!-- 03 -->
+            <article class="service-block reveal-up">
+                <div class="service-left">
+                    <p class="service-eyebrow" id="service-direction" tabindex="-1">03 / Création</p>
+                    <div class="service-spacer"></div>
+                    <div class="service-body">
+                        <p class="service-desc">
+                            Recherche graphique, conception d'identités visuelles et accompagnement créatif.
+                            Cette approche permet de développer des projets cohérents, où l'objet, l'image et le
+                            savoir-faire dialoguent dans une même intention.
+                        </p>
+                        <ul class="service-tags">
+                            <li><strong>Illustration</strong> & création graphique</li>
+                            <li><strong>Objets</strong> personnalisés & gravure originale</li>
+                        </ul>
+                        <div class="service-ctas">
+                            <a href="contact.html" class="cta-primary">Demander un devis →</a>
+                            <a href="index.html?filter=graphisme#portfolio" class="cta-secondary">Voir les
+                                réalisations</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="service-right">
+                    <h2 class="service-title" >
+                        DA &amp; CONCEPTION GRAPHIQUE
+                    </h2>
+                    <div class="service-image">
+                        <img src="image/nav/lucie-2.webp" alt="Design et création">
+                    </div>
+                </div>
+            </article>
+
+
+
+        </section>
+
+    </main>
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="f-col">
+                <div class="f-logo">ALICE AUGER</div>
+                <p class="f-sub">Paris, France<br>Design & Artisanat</p>
+            </div>
+
+            <div class="f-col">
+                <h2 class="f-title">CONTACT</h2>
+                <a href="#">→ Instagram</a>
+                <a href="#">→ LinkedIn</a>
+                <a href="#">→ Behance</a>
+            </div>
+
+            <div class="f-col1">
+                <p>mail@hotmail.com</p>
+                <p>+33 6 54 88 25 44</p>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 Alice Auger. Tous droits réservés.</p>
+            <div class="footer-legal-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="confidentialite.html">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

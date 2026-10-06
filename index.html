@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <!-- Métadonnées de la page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alice Auger | Portfolio</title>
+    <meta name="description"
+        content="Alice Auger, créatrice artisanale et directrice artistique à Paris : gravure sur verre sur mesure, animations en direct et création graphique.">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <!-- Icônes du site -->
+    <link rel="icon" href="image/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="image/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+
+    <!-- Aperçu partagé sur les réseaux sociaux -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Alice Auger">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Alice Auger | Portfolio">
+    <meta property="og:description"
+        content="Alice Auger, créatrice artisanale et directrice artistique à Paris : gravure sur verre sur mesure, animations en direct et création graphique.">
+    <meta property="og:image" content="https://augeralice.github.io/image/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alice Auger — Des objets singuliers façonnés à la main">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <!-- Feuille de styles partagée avec les autres pages -->
+    <!-- Mouvement : état posé avant le premier rendu (aucun flash).
+         - intro-seen : on arrive depuis une autre page du site (et pas via un rechargement) :
+           le header reste en place, il ne rejoue pas son wipe. À l'arrivée sur le site
+           (lien externe, URL tapée, favori, rechargement), il joue son entrée complète.
+         - is-transitioning : le navigateur joue une vraie transition entre pages, donc pas de calque noir. -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            try {
+                var nav = performance.getEntriesByType('navigation')[0];
+                var reloaded = nav && nav.type === 'reload';
+                var fromSite = document.referrer.indexOf(location.origin + '/') === 0;
+                if (fromSite && !reloaded) d.classList.add('intro-seen');
+            } catch (e) { }
+            addEventListener('pagereveal', function (e) {
+                if (e.viewTransition) d.classList.add('is-transitioning');
+            });
+        })();
+    </script>
+
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+<body>
+    <!-- Accessibilité : lien visible au clavier pour aller directement au contenu -->
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+
+    <!-- Indicateur de progression du défilement -->
+    <div class="progress-bar"></div>
+
+    <!-- En-tête et navigation partagés -->
+    <header>
+        <div class="logo">
+            <div class="reveal-mask">
+                <a href="index.html" class="reveal-logo">
+                    <span class="logo-name">ALICE AUGER</span>
+                </a>
+            </div>
+        </div>
+
+        <input type="checkbox" id="burger-check">
+        <label for="burger-check" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+
+        <nav aria-label="Navigation principale">
+            <a href="apropos.html">À PROPOS</a>
+            <a href="services.html">SERVICES</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+        <!-- Présentation principale de l’activité -->
+        <section class="hero">
+            <div class="hero-subtitle">
+                <span class="reveal-mask">
+                    <span class="reveal-text">Direction artistique &amp; gravure artisanale</span>
+                </span>
+            </div>
+
+            <h1 class="hero-title">
+                <span class="reveal-mask">
+                    <span class="reveal-text">Des objets singuliers
+                        façonnés à la main</span>
+                </span>
+            </h1>
+
+            <div class="hero-details">
+                <!-- Colonne d’équilibre visuel utilisée sur grand écran -->
+                <div class="hero-col-left"></div>
+                <div class="hero-col-right">
+                    <div class="divider-line2"></div>
+                    <div class="reveal-mask">
+                        <p class="reveal-text">
+                            Des univers visuels et des objets singuliers, imaginés et façonnés à la main.
+                        </p>
+                    </div>
+                    <div class="hero-actions">
+                       
+                         <nav class="services-summary-links" aria-label="Découvrir mes services">
+                        <a href="services.html#service-direction">Direction artistique <span aria-hidden="true">↗</span></a>
+                        <a href="services.html#service-gravure">Gravure <span aria-hidden="true">↗</span></a>
+                    </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+     
+
+        <!-- Portfolio : les cartes sont injectées par script.js depuis js/data.js -->
+        <section class="gallery">
+            <div class="next-label portfolio-heading" id="portfolio">
+                <h2 class="txt-label">Sélection de projets</h2>
+                <div class="divider-line"></div>
+            </div>
+
+            <!-- Les boutons pilotent le filtre des cartes générées par JavaScript -->
+            <div class="filter-nav">
+                <button class="filter-btn active" data-filter="all" aria-pressed="true">Tous</button>
+                <button class="filter-btn" data-filter="graphisme" aria-pressed="false">Graphisme</button>
+                <button class="filter-btn" data-filter="artisanat" aria-pressed="false">Artisanat</button>
+            </div>
+
+            <div class="grid-layout"></div>
+        </section>
+    </main>
+
+    <!-- Pied de page partagé -->
+    <footer>
+        <div class="footer-wrap">
+            <div class="f-col">
+                <div class="f-logo">ALICE AUGER</div>
+                <p class="f-sub">Paris, France<br>Design & Artisanat</p>
+            </div>
+            <div class="f-col">
+                <h2 class="f-title">CONTACT</h2>
+                <a href="https://instagram.com" target="_blank" rel="noopener">→ Instagram</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener">→ LinkedIn</a>
+                <a href="https://behance.net" target="_blank" rel="noopener">→ Behance</a>
+            </div>
+            <div class="f-col1">
+                <p>mail@hotmail.com</p>
+                <p>+33 6 54 88 25 44</p>
+            </div>
+        </div>
+
+        <div class="footer-legal">
+            <p>&copy; 2026 Alice Auger. Tous droits réservés.</p>
+            <div class="footer-legal-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="confidentialite.html">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Données des projets puis comportements communs du site -->
+    <script src="js/data.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

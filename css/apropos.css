@@ -1,0 +1,664 @@
+/* ==========================================================================
+   PAGE À PROPOS — VERSION PRESTATIONS & ÉVÉNEMENTIEL (LUXE)
+   Harmonisation responsive mobile, transitions sobres & accessibilité
+   ========================================================================== */
+
+/* ======================================================
+   1. HERO ABOUT
+====================================================== */
+
+.about-title-area {
+    margin-bottom: clamp(48px, 8vh, 80px);
+}
+
+.about-category {
+    margin-bottom: 12px;
+    font-size: clamp(0.7rem, 1vw, 0.8rem);
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(252, 244, 199, 0.6);
+}
+
+.about-name {
+    font-family: var(--font-serif);
+    font-size: clamp(2.1rem, 7vw, 4.4rem);
+    line-height: 1.05;
+    letter-spacing: -.01em;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: var(--text-color);
+    text-wrap: balance;
+}
+
+.about-name span {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 400;
+    text-transform: none;
+    font-size: clamp(1.35rem, 4.5vw, 2.6rem);
+    color: rgba(252, 244, 199, 0.75);
+    display: block;
+    margin-top: 6px;
+    letter-spacing: 0;
+}
+
+.hero-intro-text {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.4vw, 1.1rem);
+    line-height: 1.7;
+    color: rgba(255, 255, 255, 0.8);
+    font-weight: 300;
+}
+
+
+/* ======================================================
+   2. SECTION 01 — DÉMARCHE & PORTRAIT (MOBILE FIRST)
+====================================================== */
+
+.about-content-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(56px, 9vh, 120px);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: clamp(32px, 5vw, 64px);
+}
+
+/* Portrait mobile avec hauteur maîtrisée */
+.about-image-block {
+    overflow: hidden;
+    width: 100%;
+}
+
+.about-image-block img {
+    width: 100%;
+    display: block;
+    aspect-ratio: 4 / 5;
+    max-height: 520px;
+    object-fit: cover;
+    background-color: #141414;
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* .about-image-block:hover img géré dans media query */
+
+
+.details-title {
+    font-family: var(--font-sans);
+    font-size: clamp(0.7rem, 1vw, 0.78rem);
+    font-weight: 500;
+    letter-spacing: .25em;
+    text-transform: uppercase;
+    color: var(--text-color);
+    margin-bottom: clamp(16px, 2.5vh, 24px);
+    display: block;
+}
+
+.inner-text-content {
+    border-left: 1px solid rgba(255, 255, 255, 0.18);
+    padding-left: clamp(16px, 3vw, 28px);
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.inner-text-content p {
+    font-family: var(--font-sans);
+    font-size: clamp(0.95rem, 1.25vw, 1.05rem);
+    font-weight: 300;
+    line-height: 1.75;
+    color: rgba(255, 255, 255, 0.85);
+    text-wrap: pretty;
+}
+
+.manifesto-lead {
+    font-family: var(--font-serif);
+    font-size: clamp(1.2rem, 2.5vw, 1.65rem);
+    font-style: italic;
+    color: var(--text-color);
+    line-height: 1.35;
+    letter-spacing: -0.01em;
+}
+
+
+/* ======================================================
+   3. SECTION 02 — DEUX FORMATS D'INTERVENTION
+====================================================== */
+
+.about-formats-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(56px, 9vh, 120px);
+}
+
+.formats-header {
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-top: clamp(28px, 4vh, 44px);
+    margin-bottom: clamp(24px, 4vh, 36px);
+}
+
+.formats-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+    font-style: italic;
+    color: var(--white);
+    font-weight: 400;
+    margin-top: 8px;
+    line-height: 1.2;
+}
+
+.formats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+}
+
+.format-card {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+    padding: clamp(24px, 4vw, 36px);
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease, background 0.3s ease, transform 0.3s ease;
+}
+
+/* .format-card:hover géré dans media query */
+
+
+.format-tag {
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--text-color);
+    font-weight: 600;
+    margin-bottom: 12px;
+}
+
+.format-name {
+    font-family: var(--font-sans);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 14px;
+}
+
+.format-text {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+    margin-bottom: 20px;
+}
+
+.format-features {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-top: auto;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 18px;
+}
+
+.format-features li {
+    font-size: 0.82rem;
+    color: rgba(252, 244, 199, 0.85);
+    letter-spacing: 0.4px;
+}
+
+
+/* ======================================================
+   4. SECTION 03 — STANDARDS DE SERVICE
+====================================================== */
+
+.about-pillars-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(56px, 9vh, 120px);
+}
+
+.pillars-header {
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-top: clamp(28px, 4vh, 44px);
+    margin-bottom: clamp(24px, 4vh, 36px);
+}
+
+.pillars-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3.2vw, 2.4rem);
+    font-style: italic;
+    color: var(--white);
+    font-weight: 400;
+    margin-top: 8px;
+    line-height: 1.2;
+}
+
+.pillars-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.pillar-card {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.pillar-number {
+    font-size: 0.72rem;
+    letter-spacing: 2px;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-weight: 500;
+}
+
+.pillar-name {
+    font-family: var(--font-sans);
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+    font-weight: 600;
+    color: var(--white);
+    margin-bottom: 10px;
+}
+
+.pillar-desc {
+    font-family: var(--font-sans);
+    font-size: 0.92rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 300;
+}
+
+
+/* ======================================================
+   5. SECTION 04 — UNIVERS D'INTERVENTION
+====================================================== */
+
+.about-realms-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(56px, 9vh, 120px);
+}
+
+.realms-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-top: clamp(28px, 4vh, 44px);
+}
+
+.realms-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.realm-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    transition: padding-left 0.25s ease;
+}
+
+/* .realm-item:hover géré dans media query */
+
+
+.realm-item:first-child {
+    padding-top: 0;
+}
+
+.realm-role {
+    font-family: var(--font-serif);
+    font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+    font-style: italic;
+    color: var(--text-color);
+    font-weight: 400;
+}
+
+.realm-desc {
+    font-family: var(--font-sans);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.72);
+    font-weight: 300;
+}
+
+
+/* ======================================================
+   6. SECTION 05 — CTA ÉVÉNEMENTIEL (ACCESSIBLE TOUCH TARGET)
+====================================================== */
+
+.about-cta-section {
+    padding: 0 var(--pad-sm);
+    margin-bottom: clamp(72px, 12vh, 150px);
+}
+
+.cta-inner {
+    border-top: 1px solid rgba(255, 255, 255, 0.13);
+    padding-top: clamp(36px, 6vh, 60px);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+}
+
+.cta-eyebrow {
+    font-size: 0.7rem;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    color: rgba(252, 244, 199, 0.52);
+    font-weight: 500;
+}
+
+.cta-title {
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 4.5vw, 3rem);
+    color: var(--white);
+    line-height: 1.15;
+    font-weight: 400;
+}
+
+.cta-subtitle {
+    font-family: var(--font-sans);
+    font-size: clamp(0.92rem, 1.4vw, 1.05rem);
+    color: rgba(255, 255, 255, 0.75);
+    font-weight: 300;
+    max-width: 620px;
+    line-height: 1.6;
+}
+
+/* Bouton tactile optimisé (hauteur mini 44px, zone d'appui large) */
+.cta-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    font-family: var(--font-sans);
+    font-size: clamp(0.72rem, 1.2vw, 0.8rem);
+    letter-spacing: 2.8px;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: var(--text-color);
+    text-decoration: none;
+    border-bottom: 1.5px solid var(--text-color);
+    padding: 10px 4px 6px 0;
+    margin-top: 8px;
+    min-height: 44px;
+    transition: color 0.25s ease, border-color 0.25s ease, transform 0.25s ease;
+}
+
+/* .cta-link:hover géré dans media query */
+.cta-link:focus-visible {
+    color: var(--white);
+    border-bottom-color: var(--white);
+}
+
+.cta-link:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+}
+
+.cta-arrow {
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    display: inline-block;
+}
+
+/* .cta-link:hover .cta-arrow géré dans media query */
+.cta-link:focus-visible .cta-arrow {
+    transform: translateX(6px);
+}
+
+.cta-link:active {
+    transform: scale(0.98);
+}
+
+
+/* ======================================================
+   7. ANIMATIONS D'APPARITION AU DÉFILEMENT (REVEAL-UP)
+====================================================== */
+
+/* .reveal-up et .reveal-up.is-visible viennent de style.css (un seul réglage pour tout le site).
+   Cette page ne garde que ses exceptions ci-dessous. */
+
+/* Les sections restent stables ; leurs cartes et entrées apparaissent en cascade. */
+.about-formats-section.reveal-up,
+.about-pillars-section.reveal-up,
+.about-realms-section.reveal-up {
+    opacity: 1;
+    transform: none;
+    transition: none;
+}
+
+.formats-grid .format-card,
+.pillars-grid .pillar-card,
+.realms-list .realm-item {
+    opacity: 0;
+    transform: translateY(var(--reveal-y));
+    transition: opacity var(--dur-reveal) var(--ease-out),
+                transform var(--dur-reveal) var(--ease-out);
+}
+
+/* Ce bloc écrasait la transition de survol des cartes et des lignes de secteurs :
+   on la réintègre pour que le hover reste animé. */
+.formats-grid .format-card {
+    transition: opacity var(--dur-reveal) var(--ease-out),
+                transform var(--dur-reveal) var(--ease-out),
+                border-color 0.3s ease,
+                background 0.3s ease;
+}
+
+.realms-list .realm-item {
+    transition: opacity var(--dur-reveal) var(--ease-out),
+                transform var(--dur-reveal) var(--ease-out),
+                padding-left 0.25s ease;
+}
+
+.formats-grid .format-card.is-visible,
+.pillars-grid .pillar-card.is-visible,
+.realms-list .realm-item.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* ======================================================
+   8. RESPONSIVE TABLETTE (>= 768px)
+====================================================== */
+
+@media (min-width: 768px) {
+    .about-title-area {
+        margin-bottom: 90px;
+    }
+
+    .about-category {
+        margin-bottom: 18px;
+    }
+
+    .about-content-section,
+    .about-formats-section,
+    .about-pillars-section,
+    .about-realms-section,
+    .about-cta-section {
+        padding: 0 var(--pad-md);
+    }
+
+    .formats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 28px;
+    }
+
+    .pillars-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 28px;
+    }
+
+    .realms-grid {
+        grid-template-columns: 32% 68%;
+        gap: 36px;
+    }
+}
+
+
+/* ======================================================
+   9. RESPONSIVE DESKTOP (>= 1024px)
+====================================================== */
+
+@media (min-width: 1024px) {
+    .about-content-section,
+    .about-formats-section,
+    .about-pillars-section,
+    .about-realms-section,
+    .about-cta-section {
+        padding: 0 var(--pad-lg);
+    }
+
+    .about-grid {
+        grid-template-columns: 1.15fr .85fr;
+        align-items: start;
+        gap: 64px;
+    }
+
+    .inner-text-content {
+        padding-left: 32px;
+    }
+
+    .about-image-block {
+        position: sticky;
+        top: 130px;
+    }
+
+    .about-image-block img {
+        max-height: none;
+    }
+
+    .formats-grid,
+    .pillars-grid {
+        gap: 40px;
+    }
+}
+
+
+/* ======================================================
+   10. GRAND ÉCRAN (>= 1280px)
+====================================================== */
+
+@media (min-width: 1280px) {
+    .about-grid {
+        grid-template-columns: 1.2fr .8fr;
+        gap: 80px;
+    }
+}
+
+
+/* ======================================================
+   11. ACCESSIBILITÉ & PREFERS-REDUCED-MOTION
+====================================================== */
+
+/* Focus accessible au clavier sur le bouton burger */
+.hamburger:focus-visible {
+    outline: 2px solid var(--text-color);
+    outline-offset: 4px;
+    border-radius: 2px;
+}
+
+/* Neutralisation totale des animations en cas de préférence utilisateur */
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal-up,
+    .formats-grid .format-card,
+    .pillars-grid .pillar-card,
+    .realms-list .realm-item {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+        transition-delay: 0ms !important;
+    }
+
+    .about-image-block img {
+        transition: none !important;
+        transform: none !important;
+    }
+
+    .format-card,
+    .cta-link,
+    .cta-arrow {
+        transition: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* ======================================================
+   12. PAGES LÉGALES (mentions-legales.html, confidentialite.html)
+====================================================== */
+
+.legal-grid {
+    grid-template-columns: 1fr;
+}
+
+.legal-text-block .details-title {
+    margin-top: clamp(32px, 5vw, 56px);
+}
+
+.legal-text-block .details-title:first-child {
+    margin-top: 0;
+}
+
+.legal-updated {
+    margin-top: clamp(32px, 5vw, 56px);
+    opacity: .6;
+    font-size: 0.9rem;
+}
+
+
+/* --- RETOUR TACTILE (:active) POUR MOBILE & TABLETTE --- */
+a:active,
+button:active,
+.cta-link:active {
+    opacity: 0.72;
+    transform: scale(0.97);
+    transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+/* --- EFFETS DE SURVOL (SOURIS / POINTEUR PRÉCIS UNIQUEMENT) --- */
+@media (hover: hover) and (pointer: fine) {
+    .about-image-block:hover img {
+        filter: grayscale(0%);
+        transform: scale(1.02);
+    }
+
+    .format-card:hover {
+        border-color: rgba(255, 255, 255, 0.4);
+        background: rgba(255, 255, 255, 0.03);
+    }
+
+    .realm-item:hover {
+        border-color: rgba(255, 255, 255, 0.3);
+        color: var(--white);
+    }
+
+    .cta-link:hover {
+        color: var(--white);
+    }
+
+    .cta-link:hover .cta-arrow {
+        transform: translate(3px, -3px);
+    }
+}

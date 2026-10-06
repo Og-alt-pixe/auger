@@ -1,0 +1,1498 @@
+/* ==========================================================================
+   1. POLICES & VARIABLES (FLUIDES TOUS ÉCRANS)
+   ========================================================================== */
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('../font/AlbertSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Albert Sans';
+    src: url('../font/AlbertSans-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../font/CormorantGaramond-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Cormorant Garamond';
+    src: url('../font/CormorantGaramond-Italic-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: italic;
+    font-display: swap;
+}
+
+:root {
+    --bg-color: #0a0a0a;
+    --black: #000000;
+    --white: #FFFFFF;
+    --text-color: #feffbe;
+    --hover-color: #b1b0b0;
+    --border-color: rgba(255, 255, 255, 1);
+
+    --line: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
+    --line1: linear-gradient(to left, rgba(0, 0, 0, 0.8), transparent);
+    --line2: linear-gradient(to bottom, rgba(255, 255, 255, 0.8), transparent);
+
+    --font-serif: 'Cormorant Garamond', serif;
+    --font-sans: 'Albert Sans', sans-serif;
+
+    --pad-sm: 22px;
+    --pad-md: 48px;
+    --pad-lg: 88px;
+    --container: 1200px;
+
+    /* Tailles fluides calculées pour s'adapter continuellement */
+    --fs-h1: clamp(1.85rem, 4.5vw, 5.2rem);
+    --fs-subtitle: clamp(0.72rem, 1.5vw, 0.85rem);
+    --fs-h2: clamp(0.95rem, 1.4vw, 1.25rem);
+    /* Étiquettes de section (« Sélection de projets », « Galerie », « À propos »…) :
+       une seule taille, toujours ≤ aux boutons de filtre placés juste dessous (12px). */
+    --fs-label: clamp(0.7rem, 0.9vw, 0.75rem);
+    /* Rallonge du filet vertical du hero sur desktop (voir @media 1024px) */
+    --hero-rule-extra: clamp(40px, 4.5vw, 72px);
+    --fs-body: clamp(1rem, 0.9vw, 1.1rem);
+
+    --transition-fast: 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+    --transition-smooth: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+
+    /* ---- SOCLE MOUVEMENT : une seule source de vérité ----
+       Toutes les animations d'apparition du site lisent ces valeurs. */
+    --ease-out: cubic-bezier(0.25, 1, 0.5, 1);       /* reveals, hovers : départ vif, arrivée douce */
+    --ease-in-out: cubic-bezier(0.76, 0, 0.24, 1);   /* wipes, lignes, transitions de page */
+    --dur-wipe: 1.1s;                                /* texte qui monte dans son masque */
+    --dur-reveal: 0.9s;                              /* apparition au scroll (fondu + montée) */
+    --reveal-y: 20px;                                /* distance de montée commune à tous les reveals */
+
+    /* Transition de page : sortie de l'ancienne, entrée de la nouvelle */
+    --vt-out: 0.3s;
+    --vt-in: 0.45s;
+    /* Décalage de l'intro (header, hero) : elle démarre quand la page devient visible,
+       pas pendant que le fondu noir est encore en cours. */
+    --intro-offset: 0.3s;
+}
+
+/* ==========================================================================
+   2. REZ-DE-CHAUSSÉE : STYLES DE BASE (MOBILE PAR DÉFAUT)
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+}
+
+body {
+    background-color: var(--black);
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: var(--fs-body);
+    line-height: 1.55;
+    overflow-x: hidden;
+}
+
+/* --- TRANSITION ENTRE LES PAGES ---------------------------------------
+   Chrome/Edge/Safari : transition native (@view-transition). La page sortante
+   passe au noir, la nouvelle apparaît ensuite. Le header porte son propre nom
+   de transition : il reste en place, il ne fond pas avec la page.
+   Firefox (pas encore de transition native entre documents) : pas de transition
+   de sortie, mais la nouvelle page arrive en fondu depuis le noir (voir
+   html::after plus bas). Rien à gérer en JS : aucun délai au clic. */
+@view-transition {
+    navigation: auto;
+}
+
+::view-transition-old(root) {
+    animation: page-fade-out var(--vt-out) var(--ease-in-out) forwards;
+}
+
+::view-transition-new(root) {
+    animation: page-fade-in var(--vt-in) var(--ease-in-out) var(--vt-out) backwards;
+}
+
+@keyframes page-fade-out {
+    to {
+        opacity: 0;
+    }
+}
+
+@keyframes page-fade-in {
+    from {
+        opacity: 0;
+    }
+}
+
+/* Header persistant : on ne montre que l'état « nouveau », sans animation. */
+header {
+    view-transition-name: site-header;
+}
+
+::view-transition-group(site-header) {
+    animation: none;
+}
+
+::view-transition-old(site-header) {
+    display: none;
+}
+
+::view-transition-new(site-header) {
+    animation: none;
+}
+
+/* Arrivée en fondu depuis le noir quand il n'y a PAS de transition native
+   (Firefox, première visite directe). La classe is-transitioning est posée
+   avant le premier rendu par le petit script du <head> quand le navigateur
+   joue une vraie transition : dans ce cas le calque n'existe pas. */
+html:not(.is-transitioning)::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: var(--black);
+    z-index: 9999;
+    pointer-events: none;
+    animation: overlay-out 0.5s var(--ease-in-out) forwards;
+}
+
+@keyframes overlay-out {
+    to {
+        opacity: 0;
+        visibility: hidden;
+    }
+}
+
+a,
+button {
+    text-decoration: none;
+    background: none;
+    border: none;
+    color: inherit;
+    font: inherit;
+}
+
+a:focus-visible,
+button:focus-visible,
+.hamburger:focus-visible {
+    outline: 1px solid var(--text-color);
+    outline-offset: 3px;
+}
+
+/* --- RETOUR TACTILE & FEEDBACK CLIC (:active) --- */
+a:active,
+button:active,
+.hamburger:active,
+.filter-btn:active {
+    opacity: 0.72;
+    transform: scale(0.97);
+    transition: opacity 0.1s ease, transform 0.1s ease;
+}
+
+header nav a:active {
+    opacity: 0.65;
+    transform: scale(0.96);
+}
+
+
+img,
+picture,
+video {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+.progress-bar {
+    position: fixed;
+    top: 70px;
+    left: 0;
+    width: 0%;
+    height: 1.5px;
+    background-color: var(--text-color);
+    opacity: 0.9;
+    z-index: 9999;
+}
+
+.skip-link {
+    position: absolute;
+    top: -100px;
+    left: 12px;
+    background: var(--text-color);
+    color: var(--black);
+    padding: 10px 16px;
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    z-index: 10000;
+    transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+    top: 12px;
+    /* apparaît uniquement à la navigation clavier (tab) */
+}
+
+.container {
+    max-width: var(--container);
+    margin-inline: auto;
+}
+
+.page-pad {
+    padding-inline: var(--pad-sm);
+}
+
+/* --- HEADER MOBILE --- */
+header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 70px;
+    padding: 0 var(--pad-sm);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+    z-index: 1000;
+    background: var(--black);
+}
+
+.logo-name {
+    font-size: 14px;
+    letter-spacing: 2px;
+    font-weight: 700;
+}
+
+.reveal-logo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    transform: translateY(-110%);
+    animation: wipeDown 1s var(--ease-in-out) forwards;
+    animation-delay: var(--intro-offset);
+    will-change: transform;
+}
+
+@keyframes wipeDown {
+    to {
+        transform: translateY(0);
+    }
+}
+
+header nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background: var(--black);
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding-left: clamp(10px, 3vw, 20px);
+    padding-right: clamp(54px, 14vw, 70px);
+    gap: clamp(8px, 2.5vw, 20px);
+    clip-path: ellipse(0% 150% at 100% 50%);
+    overflow: hidden;
+    /* Fermé : les liens ne reçoivent plus le focus clavier (visibility passe à hidden
+       APRÈS la fermeture du rideau, et à visible AVANT son ouverture). */
+    visibility: hidden;
+    transition: clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s linear 0.8s;
+    z-index: 1050;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+header nav a {
+    color: var(--white);
+    font-size: clamp(0.75rem, 1.6vw, 0.9375rem);
+    /* 12px → 15px, remplace les paliers fixes 10/11/12px */
+    letter-spacing: 1px;
+    font-weight: 400;
+    padding-right: 10px;
+    display: inline-block;
+    will-change: transform;
+    transform: translateY(-110%);
+    animation: wipeDown 1s var(--ease-in-out) forwards;
+}
+
+/* Cascade des liens : seuls le délai et la durée changent d'un lien à l'autre */
+/* Réserve la largeur de la version « survol » (gras) : au survol, plus aucun lien voisin ne bouge.
+   Le texte caché vient de data-text, posé par script.js. */
+header nav a::after {
+    content: attr(data-text);
+    display: block;
+    height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    font-weight: 500;
+    pointer-events: none;
+    user-select: none;
+}
+
+header nav a:nth-child(1) {
+    animation-delay: calc(var(--intro-offset) + 0.1s);
+}
+
+header nav a:nth-child(2) {
+    animation-delay: calc(var(--intro-offset) + 0.2s);
+    animation-duration: 1.1s;
+}
+
+header nav a:nth-child(3) {
+    animation-delay: calc(var(--intro-offset) + 0.3s);
+    animation-duration: 1.3s;
+}
+
+/* Header déjà présenté pendant cette session : il reste en place d'une page à l'autre.
+   (La classe intro-seen est posée avant le premier rendu par le script du <head>.) */
+html.intro-seen .reveal-logo,
+html.intro-seen header nav a:nth-child(n) {
+    animation: none;
+    transform: none;
+}
+
+/* nav a:hover déplacé sous @media (hover: hover) and (pointer: fine) */
+
+#burger-check {
+    display: none;
+}
+
+.hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 24px;
+    height: 13px;
+    cursor: pointer;
+    z-index: 1100;
+    position: relative;
+}
+
+.hamburger::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 44px;
+    height: 44px;
+    transform: translate(-50%, -50%);
+    /* zone cliquable élargie à 44×44px (norme tactile) sans changer l'icône visible */
+}
+
+.bar {
+    width: 100%;
+    height: 1px;
+    background-color: var(--white);
+    transition: all 0.4s ease;
+}
+
+#burger-check:checked~nav {
+    clip-path: ellipse(150% 150% at 100% 50%);
+    pointer-events: auto;
+    visibility: visible;
+    transition: clip-path 0.8s cubic-bezier(0.65, 0, 0.35, 1), visibility 0s linear 0s;
+}
+
+#burger-check:checked~.hamburger .bar:nth-child(1) {
+    transform: translateY(6px) rotate(45deg);
+}
+
+#burger-check:checked~.hamburger .bar:nth-child(2) {
+    opacity: 0;
+}
+
+#burger-check:checked~.hamburger .bar:nth-child(3) {
+    transform: translateY(-6px) rotate(-45deg);
+}
+
+/* --- HERO SECTION (MOBILE) --- */
+.reveal-mask {
+    overflow: hidden;
+    display: block;
+}
+
+/* Wipe-up depuis le masque — pas de fade, le texte monte derrière le clip */
+.reveal-text {
+    display: inline-block;
+    transform: translateY(110%);
+    animation: wipeUp var(--dur-wipe) var(--ease-in-out) forwards;
+    will-change: transform;
+}
+
+@keyframes wipeUp {
+    to {
+        transform: translateY(0);
+    }
+}
+
+/* Cascade hero : après que le header a fini (~0.4s) */
+.hero-subtitle .reveal-text {
+    animation-delay: calc(var(--intro-offset) + 0.4s);
+}
+
+h1.hero-title .reveal-text,
+.about-title .reveal-text {
+    animation-delay: calc(var(--intro-offset) + 0.5s);
+}
+
+.hero-col-right .reveal-text {
+    animation-delay: calc(var(--intro-offset) + 0.8s);
+}
+
+/* Éléments du hero qui n'ont pas de masque de texte (liens, bouton retour, étiquettes) :
+   fondu + petite montée, calés sur la même timeline que le reste du hero.
+   --d = rang dans la timeline (délai propre à chaque élément, en plus de --intro-offset).
+   Fill-mode « backwards » : l'état de départ est tenu pendant le délai, puis l'élément
+   retrouve son style normal. On ne garde PAS l'animation (pas de « forwards »), sinon elle
+   écraserait les :hover et :active de ces éléments. */
+@keyframes introFade {
+    from {
+        opacity: 0;
+        transform: translateY(calc(var(--reveal-y) * 0.5));
+    }
+}
+
+.hero-actions,
+.back-link,
+.about-category,
+.hero .next-label .txt-label {
+    animation: introFade var(--dur-reveal) var(--ease-out) backwards;
+    animation-delay: calc(var(--intro-offset) + var(--d, 0s));
+}
+
+.back-link {
+    --d: 0.1s;
+}
+
+.about-category {
+    --d: 0.4s;
+}
+
+.hero-actions {
+    --d: 1s;
+}
+
+.hero .next-label .txt-label {
+    --d: 0.95s;
+}
+
+.hero {
+    padding: 110px var(--pad-sm) 40px;
+}
+
+.hero-subtitle {
+    margin-bottom: 12px;
+    max-width: 80%;
+}
+
+.hero-subtitle .reveal-text {
+    font-family: var(--font-sans);
+    font-size: var(--fs-subtitle);
+    font-weight: 270;
+    opacity: 0.91;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--white);
+
+    line-height: 1.35;
+    white-space: normal;
+}
+
+h1.hero-title .reveal-text {
+    font-family: var(--font-serif);
+    font-size: var(--fs-h1);
+    line-height: 1.1;
+    letter-spacing: -0.01em;
+    font-weight: 600;
+    text-transform: uppercase;
+    overflow-wrap: break-word;
+    word-break: normal;
+    color: var(--text-color);
+    text-wrap: balance;
+    max-width: 100%;
+    font-style: normal; 
+    padding-bottom: 0.15em;
+}
+
+.hero-title span {
+    font-family: var(--font-serif);
+    font-style: italic;
+    text-transform: uppercase;
+}
+
+.hero-details {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    margin-top: 32px;
+    margin-bottom: 60px;
+
+}
+
+.hero-col-left {
+    display: none;
+}
+
+/* Colonne vide du hero (<div></div> sur services, contact, à propos) : même comportement
+   que .hero-col-left de l'accueil. Cette règle vivait dans services.css, donc la page
+   « à propos » (qui ne le charge pas) gardait 24px de trop sur mobile et décalait sa
+   colonne sur tablette. */
+.hero-details > div:empty {
+    display: none;
+}
+
+@media (min-width: 1024px) {
+    .hero-details > div:empty {
+        display: block;
+    }
+}
+
+.hero-col-right {
+    position: relative;
+    padding-bottom: 0;
+    max-width: 100%;
+   
+}
+
+.hero-col-right p {
+    position: relative;
+    padding-left: 16px;
+    font-size: var(--fs-h2);
+    color: var(--white);
+    letter-spacing: 0.015em;
+    font-weight: 300;
+    line-height: 1.50;
+    margin-bottom: 0;
+    text-wrap: pretty;
+    
+}
+
+/******* LIENS ACTIONS HERO *********/
+.hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+    margin: 24px 0 0 16px;
+}
+
+/* Même famille que les autres liens d'action du site (.cta-primary, .cta-link, .form-submit) :
+   capitales espacées, filet souligné, flèche qui bouge au survol. Teinte jaune conservée pour l'accueil. */
+.hero-actions a,
+.service-card a,
+.services-summary-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: var(--text-color);
+    border-bottom: 1px solid rgba(254, 255, 190, 0.55);
+    padding-bottom: 4px;
+    font-size: clamp(0.72rem, 1.3vw, 0.8rem);
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.hero-actions a span,
+.services-summary-links a span {
+    display: inline-block;
+    transition: transform 0.3s var(--ease-out);
+}
+
+/* Accueil : résumé éditorial des services */
+.services {
+    max-width: 1600px;
+    margin: 0 auto 72px;
+    padding: 0 var(--pad-sm);
+}
+
+.services-summary {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+    align-items: start;
+}
+
+.services-summary-title {
+    max-width: 14ch;
+    color: var(--text-color);
+    font-family: var(--font-serif);
+    font-size: clamp(1.7rem, 3.2vw, 3rem);
+    font-weight: 500;
+    line-height: 0.98;
+    text-transform: uppercase;
+}
+
+.services-summary-content {
+    max-width: 32rem;
+}
+
+.services-summary-content > p {
+    margin-bottom: 14px;
+    color: rgba(255, 255, 255, 0.82);
+    font-size: 0.92rem;
+    line-height: 1.55;
+}
+
+.services-summary-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px 24px;
+}
+
+.services-heading h2,
+.portfolio-heading h2 {
+    font-family: var(--font-sans);
+    font-size: var(--fs-label);
+    font-weight: 300;
+    letter-spacing: 1.8px;
+    color: rgb(190, 187, 187);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.portfolio-heading {
+    margin-bottom: 20px;
+}
+
+/* Les lignes tirent avec la même courbe, après leur texte associé */
+.divider-line {
+    width: 100%;
+    height: 1px;
+    background: var(--line);
+    transform: scaleX(0);
+    transform-origin: left center;
+    animation: scaleLine 1s var(--ease-in-out) forwards;
+    animation-delay: 1.2s;
+}
+
+@keyframes scaleLine {
+    to {
+        transform: scaleX(1);
+    }
+}
+
+/* Filet à côté du label d'un hero : il se tire juste après son libellé.
+   (Ceux de la galerie, hors hero, gardent leur délai : ils passeront au scroll.) */
+.hero .next-label .divider-line {
+    animation-delay: calc(var(--intro-offset) + 1.05s);
+}
+
+/* Label de section HORS hero (« Sélection de projets », « Galerie », titres de chapitre) :
+   il n'apparaît plus seul au chargement, avant tout le reste. Libellé et filet attendent la
+   fin de l'intro, puis entrent dans la cascade de leur section (label, filtres, cartes).
+   Le conteneur reste fixe (il porte un translateX sur très grand écran) : seuls ses enfants bougent.
+   --reveal-delay est posée par script.js : c'est le rang du label dans la cascade. */
+.gallery .next-label .txt-label,
+.project-gallery .next-label .txt-label {
+    opacity: 0;
+    transform: translateY(calc(var(--reveal-y) * 0.5));
+    transition: opacity var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0s),
+                transform var(--dur-reveal) var(--ease-out) var(--reveal-delay, 0s);
+}
+
+.gallery .next-label .divider-line,
+.project-gallery .next-label .divider-line {
+    animation: none;
+    transform: scaleX(0);
+    transition: transform 1s var(--ease-in-out) calc(var(--reveal-delay, 0s) + 0.15s);
+}
+
+.gallery .next-label.is-visible .txt-label,
+.project-gallery .next-label.is-visible .txt-label {
+    opacity: 1;
+    transform: none;
+}
+
+.gallery .next-label.is-visible .divider-line,
+.project-gallery .next-label.is-visible .divider-line {
+    transform: scaleX(1);
+}
+
+.divider-line2 {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1px;
+    height: 100%;
+    background: var(--line2);
+    transform: scaleY(0);
+    transform-origin: top center;
+    animation: scaleLineY 1s var(--ease-in-out) forwards;
+    animation-delay: calc(var(--intro-offset) + 0.85s);
+    z-index: 5;
+}
+
+@keyframes scaleLineY {
+    to {
+        transform: scaleY(1);
+    }
+}
+
+.next-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+/* Les filets des titres prennent uniquement la place restante après le libellé.
+   Leur faible contraste les garde secondaires par rapport aux contenus. */
+.services-heading .divider-line,
+.portfolio-heading .divider-line {
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    background: linear-gradient(
+        to right,
+        rgba(255, 255, 255, 0.34),
+        rgba(255, 255, 255, 0.12) 58%,
+        transparent
+    );
+}
+
+.txt-label {
+    font-family: var(--font-sans);
+    font-size: var(--fs-label);
+    font-weight: 300;
+    letter-spacing: 2px;
+    color: rgb(201, 198, 198);
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+
+
+/* --- GALERIE (MOBILE : 1 COLONNE) --- */
+.gallery {
+    padding: 0 var(--pad-sm);
+    margin-bottom: 80px;
+    max-width: 1600px;
+    margin-inline: auto;
+}
+
+.filter-nav {
+    opacity: 0;
+    transform: translateY(var(--reveal-y));
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+    margin-bottom: 32px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.filter-nav.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.filter-btn {
+    color: var(--white);
+    font-family: var(--font-sans);
+    font-size: 12px;
+    opacity: 0.75;
+    /* remonté de 0.55 → 0.75 pour rester lisible (contraste insuffisant sinon) */
+    transition: 0.2s;
+    cursor: pointer;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+    opacity: 1;
+    color: var(--text-color);
+}
+
+.filter-btn.active {
+    border-bottom-color: var(--text-color);
+}
+
+/* Le filet est réservé en permanence (transparent) : le texte ne bouge plus d'un pixel
+   quand on change de filtre. */
+.filter-btn {
+    position: relative;
+    border-bottom: 1px solid transparent;
+    padding-bottom: 2px;
+}
+
+/* Zone d'appui élargie sur écran tactile, sans rien changer à l'apparence */
+@media (pointer: coarse) {
+    .filter-btn::after {
+        content: '';
+        position: absolute;
+        inset: -14px -8px;
+    }
+}
+
+.grid-layout {
+    display: block;
+    column-count: 1;
+    column-gap: 20px;
+    width: 100%;
+}
+
+.grid-item {
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    cursor: pointer;
+    break-inside: avoid;
+    opacity: 0;
+    transform: translateY(var(--reveal-y));
+    margin-bottom: 20px;
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+    display: block;
+}
+
+.grid-item.tall img,
+.grid-item.portrait img {
+    aspect-ratio: 4 / 5;
+}
+
+.grid-item.square img {
+    aspect-ratio: 1 / 1;
+}
+
+.grid-item.wide img {
+    aspect-ratio: 16 / 10;
+}
+
+.grid-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.8s cubic-bezier(0.22, 1, 0.36, 1), filter 0.8s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.grid-item a {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.grid-item.is-visible {
+    opacity: 1 !important;
+    transform: translateY(0) !important;
+    pointer-events: auto;
+}
+
+.grid-item.filtering-out {
+    opacity: 0 !important;
+    transform: translateY(20px) !important;
+    pointer-events: none;
+}
+
+.grid-item.hidden {
+    display: none !important;
+}
+
+.grid-item.filtering-move {
+    transform:
+        translate(
+            var(--filter-x, 0px),
+            var(--filter-y, 0px)
+        ) !important;
+    transition:
+        transform 0.6s var(--ease-out),
+        opacity var(--dur-reveal) var(--ease-out);
+}
+
+/* Le délai de la cascade (.grid-item.is-visible, .filter-nav.is-visible)
+   est désormais calculé dynamiquement en JS (voir script.js, section 3bis),
+   pour s'adapter au nombre d'éléments visibles simultanément selon l'écran. */
+
+/* --- REVEAL GÉNÉRIQUE AU SCROLL (blocs de contenu hors hero/galerie) ---
+   Fondu + léger décalage vers le haut, déclenché une fois par
+   IntersectionObserver dans script.js (voir itemsToReveal). */
+.reveal-up {
+    opacity: 0;
+    transform: translateY(var(--reveal-y));
+    transition: opacity var(--dur-reveal) var(--ease-out), transform var(--dur-reveal) var(--ease-out);
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.item-overlay {
+    position: absolute;
+    inset: 0;
+    opacity: 1;
+    background: linear-gradient(to bottom,
+            rgba(0, 0, 0, 0.55) 0%,
+            rgba(0, 0, 0, 0) 25%,
+            rgba(0, 0, 0, 0) 55%,
+            rgba(0, 0, 0, 0.8) 100%);
+    /* bande sombre en haut (catégorie) ET en bas (titre/date), transparent au centre */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 20px;
+    transition: opacity 0.5s ease;
+    z-index: 2;
+}
+
+.divider-line3 {
+    background: var(--line);
+    width: 24px;
+    height: 1px;
+}
+
+.category {
+    font-size: clamp(0.7rem, 1vw, 0.8125rem);
+    /* 11.2px → 13px, remplace le 10px fixe */
+    font-family: var(--font-sans);
+    letter-spacing: 1.8px;
+    font-weight: 430;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--white);
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.6);
+    /* filet de sécurité si l'image est très claire sous le dégradé */
+}
+
+.project-name {
+    font-family: var(--font-sans);
+    font-size: 1.1rem;
+    font-weight: 590;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--white);
+    margin-bottom: 4px;
+}
+
+.project-date {
+    font-family: var(--font-sans);
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.7rem, 1vw, 0.8125rem);
+    /* 11.2px → 13px, remplace le 10px fixe */
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, 0.85);
+    /* opacité relevée de 0.637 → 0.85 pour rester lisible sur fond noir */
+    display: block;
+    margin-top: 2px;
+}
+
+/* --- FOOTER MOBILE --- */
+footer {
+    border-top: 1px solid white;
+    padding: 16px var(--pad-sm);
+}
+
+.footer-wrap {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+    padding: 20px 0;
+    letter-spacing: 1.2px;
+}
+
+.f-logo {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    width: fit-content;
+    color: var(--text-color);
+    border-bottom: 1px solid var(--text-color);
+    padding-bottom: 6px;
+}
+
+.f-col a,
+.footer-wrap a,
+.footer-wrap p {
+    color: var(--white);
+    text-decoration: none;
+    font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+    /* 13px → 15px, remplace le 13px fixe */
+    margin-bottom: 8px;
+    display: block;
+    font-weight: 300;
+    opacity: 0.9;
+    transition: 0.3s;
+}
+
+.f-col a:active,
+.footer-wrap a:active {
+    opacity: 0.6;
+    /* feedback visuel au tap sur mobile, là où le hover n'existe pas */
+}
+
+/* --- BARRE LÉGALE (sous le footer) --- */
+.footer-legal {
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    padding-top: 16px;
+    margin-top: 8px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.footer-legal p {
+    font-size: 0.75rem;
+    opacity: 0.55;
+    letter-spacing: 0.5px;
+    margin: 0;
+}
+
+.footer-legal-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+}
+
+.footer-legal-links a {
+    font-size: 0.75rem;
+    color: var(--white);
+    opacity: 0.55;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    transition: opacity 0.2s;
+}
+
+.footer-legal-links a:hover,
+.footer-legal-links a:active {
+    opacity: 0.9;
+}
+
+.f-title {
+    font-size: clamp(0.8125rem, 1vw, 0.9375rem);
+    /* 13px → 15px, cohérent avec .f-col a */
+    font-weight: 500;
+    margin-bottom: 12px;
+    width: fit-content;
+    color: var(--white);
+    border-bottom: 1px solid var(--white);
+    padding-bottom: 6px;
+}
+
+
+/* ==========================================================================
+   3. ÉTAGES SUPERIEURS : ADAPTATIONS PROGRESSIVES (TABLETTE ET DESKTOP)
+   ========================================================================== */
+
+/* TABLETTE (768px+) */
+@media (min-width: 768px) {
+    .page-pad {
+        padding-inline: var(--pad-md);
+    }
+
+    /* Header */
+    header {
+        padding: 0 var(--pad-md);
+    }
+
+    .hamburger,
+    #burger-check {
+        display: none !important;
+    }
+
+    header nav {
+        position: static;
+        width: auto;
+        height: auto;
+        background: transparent;
+        display: flex;
+        padding-right: 0;
+        gap: 0;
+        clip-path: none;
+        pointer-events: auto;
+        visibility: visible;
+    }
+
+
+    header nav a {
+        margin-left: 20px;
+        letter-spacing: 1.5px;
+        padding-right: 0;
+    }
+
+    /* Hero */
+    .hero {
+        padding: 140px var(--pad-md) 60px;
+    }
+
+    .hero-subtitle {
+        margin-bottom: 20px;
+    }
+
+    .hero-subtitle .reveal-text {
+        letter-spacing: 2.5px;
+    }
+
+    h1.hero-title .reveal-text {
+        line-height: 0.98;
+    }
+
+    .hero-details {
+        grid-template-columns: 1.1fr 0.9fr;
+        margin-bottom: 28px;
+    }
+
+    .portfolio-heading {
+        gap: 14px;
+    }
+
+    .portfolio-heading .divider-line {
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.32),
+            rgba(255, 255, 255, 0.1) 58%,
+            transparent
+        );
+    }
+
+    .portfolio-heading {
+        margin-bottom: 20px;
+    }
+
+    .filter-nav {
+        margin-bottom: 24px;
+    }
+
+  .hero-actions {
+        margin-left: 30px;
+
+    }
+
+/* LIENS ACTIONS HERO */
+
+    .services {
+        margin-bottom: 72px;
+        padding-inline: var(--pad-md);
+    }
+
+    .services-summary {
+        grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+        gap: 48px;
+        align-items: end;
+    }
+
+    .services-summary-content {
+        justify-self: end;
+    }
+
+  
+    /* Galerie 2 colonnes */
+    .gallery {
+        padding: 0 var(--pad-md);
+        margin-bottom: 120px;
+    }
+
+    .grid-layout {
+        column-count: 2;
+        column-gap: 17px;
+    }
+
+    .grid-item {
+        margin-bottom: 17px;
+    }
+
+    .grid-item.tall img {
+        aspect-ratio: 6 / 9;
+    }
+
+    .grid-item.portrait img {
+        aspect-ratio: 4 / 5;
+    }
+
+    .grid-item.square img {
+        aspect-ratio: 1 / 1;
+    }
+
+    .grid-item.wide img {
+        aspect-ratio: 4 / 3;
+    }
+
+    /* Footer */
+    footer {
+        padding: 20px var(--pad-md);
+    }
+
+    .footer-wrap {
+        grid-template-columns: 1.5fr 1fr 1fr;
+    }
+}
+
+/* DESKTOP (1024px+) */
+@media (min-width: 1024px) {
+    /* Marges extérieures desktop : 88px dès 1024px partout (comme le hero, la galerie et les services).
+       Avant, le header, les pages projet et le footer n'y passaient qu'à 1280px et le logo
+       n'était pas aligné avec le contenu entre 1024 et 1279px. */
+    header,
+    .page-pad {
+        padding-inline: var(--pad-lg);
+    }
+
+    footer {
+        padding-inline: var(--pad-lg);
+    }
+
+    /* Filet vertical du hero : plus long que le texte (réglable via --hero-rule-extra en haut du fichier) */
+    .hero-col-right {
+        padding-bottom: var(--hero-rule-extra);
+    }
+
+    .reveal-logo {
+        flex-direction: row;
+        align-items: baseline;
+    }
+
+    header nav a {
+        margin-left: 35px;
+        letter-spacing: 2px;
+    }
+
+    header .logo-name {
+        font-size: 18px;
+    }
+
+    .hero {
+        padding: 160px var(--pad-lg) 72px;
+    }
+
+    .hero-details {
+        grid-template-columns: 1.1fr 0.9fr;
+        margin-bottom: 16px;
+    }
+
+    .portfolio-heading {
+        gap: 16px;
+    }
+
+    .portfolio-heading .divider-line {
+        background: linear-gradient(
+            to right,
+            rgba(255, 255, 255, 0.36),
+            rgba(255, 255, 255, 0.12) 58%,
+            transparent
+        );
+    }
+
+    .portfolio-heading {
+        margin-bottom: 22px;
+    }
+
+    .filter-nav {
+        margin-bottom: 26px;
+    }
+
+
+    .hero-col-left {
+        display: block;
+    }
+
+    .hero-col-right {
+        min-width: 520px;
+        max-width: 85%;
+
+    }
+
+    .hero-col-right p {
+        padding-left: 30px;
+
+    }
+    .services {
+        padding-inline: var(--pad-lg);
+        margin-bottom: 84px;
+    }
+
+    .services-summary {
+        gap: 64px;
+    }
+
+    .gallery  {
+        padding: 0 var(--pad-lg);
+    }
+
+    .grid-layout {
+        column-gap: 20px;
+    }
+
+    .grid-item {
+        margin-bottom: 20px;
+    }
+
+    /* Overlay : le masquage au repos est réservé aux appareils avec survol (voir plus bas),
+       sinon les titres des projets seraient introuvables sur tablette tactile en paysage. */
+    .item-overlay {
+        padding: 30px;
+    }
+
+    .project-name {
+        font-size: clamp(1.2rem, 2vw, 1.8rem);
+    }
+}
+
+/* GRAND DESKTOP (1280px+) */
+/* Sur les très grands écrans, les sections restent limitées à 1600px.
+   Seuls leurs titres sont décalés vers le bord du hero ; les contenus
+   (services-grid, filter-nav et grid-layout) gardent leur retrait d'origine. */
+@media (min-width: 1600px) {
+    .services-heading,
+    .portfolio-heading {
+        transform: translateX(calc(800px - 50vw));
+    }
+}
+
+@media (min-width: 1280px) {
+
+    .page-pad,
+    header,
+    .gallery {
+        padding-inline: var(--pad-lg);
+    }
+
+
+
+    footer {
+        padding: 24px var(--pad-lg);
+    }
+}
+
+/* ==========================================================================
+   4. INTERACTIONS SOURIS (HOVER INTERFACE)
+   ========================================================================== */
+@media (hover: hover) and (min-width: 1025px) {
+    .grid-item img {
+        transition: transform 0.8s cubic-bezier(0.25, 1, 0.5, 1), filter 0.8s ease;
+    }
+
+    .grid-item:hover img {
+        transform: scale(1.03);
+    }
+
+    .grid-item:hover .item-overlay {
+        opacity: 1;
+    }
+
+    .f-col a:hover {
+        opacity: 0.7;
+        transform: translateX(2px);
+    }
+}
+
+/* ==========================================================================
+   5. ACCESSIBILITÉ : RÉDUCTION DES ANIMATIONS
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0s !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        transition-delay: 0s !important;
+        scroll-behavior: auto !important;
+    }
+
+    /* Les éléments animés par transform à l'état initial doivent rester visibles */
+    .reveal-logo,
+    .reveal-text,
+    header nav a {
+        transform: none !important;
+    }
+
+    /* Plus de fondu entre les pages ni de calque noir à l'arrivée */
+    ::view-transition-group(*),
+    ::view-transition-old(*),
+    ::view-transition-new(*) {
+        animation: none !important;
+    }
+
+    html::after {
+        display: none;
+    }
+
+    .divider-line,
+    .divider-line2 {
+        transform: scaleX(1) !important;
+        transform-origin: initial;
+    }
+
+    .divider-line2 {
+        transform: scaleY(1) !important;
+    }
+}
+
+/* ==========================================================================
+   INTERACTIONS SOURIS UNIQUEMENT (évite le hover persistant sur mobile/tactile)
+   ========================================================================== */
+/* Overlay des cartes caché au repos UNIQUEMENT quand un vrai survol existe (souris),
+   et visible aussi au focus clavier. */
+@media (min-width: 1024px) and (hover: hover) and (pointer: fine) {
+    .item-overlay {
+        opacity: 0;
+        background: radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 0.6) 100%);
+    }
+
+    .grid-item:hover .item-overlay,
+    .grid-item a:focus-visible .item-overlay {
+        opacity: 1;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    /* Limité au menu du header : avant, ce survol s'appliquait aussi aux liens du hero
+       (ils sont dans un <nav>) et changeait leur graisse. */
+    header nav a:hover {
+        color: var(--text-color);
+        font-weight: 500;
+    }
+
+    /* Liens d'action du hero : même survol que les autres CTA du site */
+    .hero-actions a:hover,
+    .services-summary-links a:hover {
+        color: var(--white);
+        border-bottom-color: var(--white);
+    }
+
+    .hero-actions a:hover span,
+    .services-summary-links a:hover span {
+        transform: translate(3px, -3px);
+    }
+
+    .filter-btn:hover {
+        color: var(--white);
+    }
+
+    .footer-legal-links a:hover {
+        color: var(--white);
+    }
+
+    .f-col a:hover {
+        color: var(--text-color);
+    }
+
+    .grid-item:hover img {
+        transform: scale(1.03);
+        filter: grayscale(0%);
+    }
+
+    .grid-item:hover .item-overlay {
+        opacity: 1;
+    }
+}

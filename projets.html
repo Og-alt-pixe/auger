@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projets | Alice Auger</title>
+        <meta name="description" content="Un projet d'Alice Auger : gravure sur verre, animation événementielle ou création graphique.">
+    <meta name="theme-color" content="#0a0a0a">
+
+    <link rel="icon" href="image/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="image/favicon-48.png" sizes="48x48" type="image/png">
+    <link rel="apple-touch-icon" href="image/apple-touch-icon.png">
+    <meta property="og:site_name" content="Alice Auger">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:title" content="Projets | Alice Auger">
+    <meta property="og:description" content="Un projet d'Alice Auger : gravure sur verre, animation événementielle ou création graphique.">
+    <meta property="og:image" content="https://augeralice.github.io/image/og-cover.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Alice Auger — Des objets singuliers façonnés à la main">
+    <meta name="twitter:card" content="summary_large_image">
+ 
+    <!-- Mouvement : état posé avant le premier rendu (aucun flash).
+         - intro-seen : on arrive depuis une autre page du site (et pas via un rechargement) :
+           le header reste en place, il ne rejoue pas son wipe. À l'arrivée sur le site
+           (lien externe, URL tapée, favori, rechargement), il joue son entrée complète.
+         - is-transitioning : le navigateur joue une vraie transition entre pages, donc pas de calque noir. -->
+    <script>
+        (function () {
+            var d = document.documentElement;
+            try {
+                var nav = performance.getEntriesByType('navigation')[0];
+                var reloaded = nav && nav.type === 'reload';
+                var fromSite = document.referrer.indexOf(location.origin + '/') === 0;
+                if (fromSite && !reloaded) d.classList.add('intro-seen');
+            } catch (e) { }
+            addEventListener('pagereveal', function (e) {
+                if (e.viewTransition) d.classList.add('is-transitioning');
+            });
+        })();
+    </script>
+
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/projets.css">
+</head>
+<body>
+    <a href="#main-content" class="skip-link">Aller au contenu</a>
+    <div class="progress-bar"></div>
+
+    <header>
+        <div class="logo">
+            <div class="reveal-mask">
+                <a href="index.html" class="reveal-logo">
+                    <span class="logo-name">ALICE AUGER</span>
+                </a>
+            </div>
+        </div>
+        <input type="checkbox" id="burger-check">
+        <label for="burger-check" class="hamburger" aria-label="Ouvrir le menu" aria-expanded="false">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </label>
+        <nav aria-label="Navigation principale">
+            <a href="apropos.html">À PROPOS</a>
+            <a href="services.html">SERVICES</a>
+            <a href="contact.html">CONTACT</a>
+        </nav>
+    </header>
+
+    <main id="main-content">
+
+        <!-- HERO -->
+   
+        <section class="project-hero">
+            <div class="project-hero-top page-pad">
+                <a href="index.html" class="back-link" id="back-button">
+                    <span class="back-line"></span>
+                    <span class="back-label">Retour</span>
+                </a>
+            </div>
+
+            <div class="project-hero-content page-pad">
+                <div class="project-category-tag reveal-mask">
+                    <span class="reveal-text projet-category"></span>
+                </div>
+                <h1 class="project-title reveal-mask name-project">
+                    <span class="reveal-text"></span>
+                </h1>
+            </div>
+
+            <div class="project-hero-image-wrap page-pad">
+                <img id="project-hero-img" src="" alt="" class="project-hero-img">
+            </div>
+        </section>
+
+        <!-- INFOS -->
+        <section class="project-info page-pad">
+            <ul class="project-meta project-details reveal-up">
+                <!-- Généré dynamiquement par JS : Client / Catégorie / Année / Prestations -->
+            </ul>
+            <div class="project-desc description-text reveal-up" id="project-desc">
+                <p></p>
+            </div>
+        </section>
+
+        <!-- GALERIE -->
+        <section class="project-gallery page-pad">
+            <div class="next-label" style="margin-bottom: 32px;">
+                <span class="txt-label">Galerie</span>
+                <div class="divider-line"></div>
+            </div>
+            <div class="project-grid" id="project-grid"></div>
+        </section>
+
+        <!-- projet SUIVANT -->
+        <a class="next-project-link" id="next-project-link" href="#">
+            <div class="next-project-inner page-pad">
+                <span class="next-project-label">projet suivant</span>
+                <h2 class="next-project-title" id="next-project-title"></h2>
+                <span class="next-project-arrow">
+                    Voir le projet
+                    <span class="next-project-line"></span>
+                </span>
+            </div>
+       <div class="next-image-wrap" id="next-image-wrap">
+    <img id="next-project-img" src="" alt="" class="next-preview-img">
+</div>
+        </a>
+
+    </main>
+
+    <footer>
+        <div class="footer-wrap">
+            <div class="f-col">
+                <div class="f-logo">ALICE AUGER</div>
+                <p class="f-sub">Paris, France<br>Design & Artisanat</p>
+            </div>
+            <div class="f-col">
+                <h2 class="f-title">CONTACT</h2>
+                <a href="https://instagram.com" target="_blank" rel="noopener">→ Instagram</a>
+                <a href="https://linkedin.com" target="_blank" rel="noopener">→ LinkedIn</a>
+                <a href="https://behance.net" target="_blank" rel="noopener">→ Behance</a>
+            </div>
+            <div class="f-col1">
+                <p>mail@hotmail.com</p>
+                <p>+33 6 54 88 25 44</p>
+            </div>
+        </div>
+        <div class="footer-legal">
+            <p>&copy; 2026 Alice Auger. Tous droits réservés.</p>
+            <div class="footer-legal-links">
+                <a href="mentions-legales.html">Mentions légales</a>
+                <a href="confidentialite.html">Politique de confidentialité</a>
+            </div>
+        </div>
+    </footer>
+
+  <script src="js/data.js"></script>
+<script src="js/projet-manager.js"></script>
+<script src="js/script.js"></script>
+</body>
+</html>
